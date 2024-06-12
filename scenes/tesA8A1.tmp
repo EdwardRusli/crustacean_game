@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmivlveq5f6qe"]
+
+[ext_resource type="Script" path="res://scripts/scenemanager.gd" id="1_5fh3y"]
+[ext_resource type="PackedScene" uid="uid://dqmfi8n3e03no" path="res://assets/item_spawner.tscn" id="1_dteb2"]
+[ext_resource type="PackedScene" uid="uid://bh6un7fnopfma" path="res://assets/pan.tscn" id="3_7wcdp"]
+[ext_resource type="Script" path="res://scripts/mouse_sprite.gd" id="4_bxjdr"]
+[ext_resource type="PackedScene" uid="uid://ydfq4n8hfyho" path="res://assets/plate.tscn" id="5_er77e"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_right = 1.714
+anchor_bottom = 1.681
+offset_right = -822.528
+offset_bottom = -441.288
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5fh3y")
+
+[node name="ItemSpawner" parent="." instance=ExtResource("1_dteb2")]
+position = Vector2(109, 49)
+itemName = "seaweed"
+
+[node name="Pan" parent="." instance=ExtResource("3_7wcdp")]
+position = Vector2(620, 171)
+
+[node name="MouseSprite" type="Sprite2D" parent="."]
+script = ExtResource("4_bxjdr")
+
+[node name="Plate" parent="." instance=ExtResource("5_er77e")]
+position = Vector2(244, 412)

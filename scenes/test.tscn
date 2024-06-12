@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmivlveq5f6qe"]
+
+[ext_resource type="Script" path="res://scripts/scenemanager.gd" id="1_5fh3y"]
+[ext_resource type="PackedScene" uid="uid://dqmfi8n3e03no" path="res://assets/item_spawner.tscn" id="1_dteb2"]
+[ext_resource type="Texture2D" uid="uid://fwvoug27rgy4" path="res://sprites/background.jpg" id="2_t5k1w"]
+[ext_resource type="Texture2D" uid="uid://bp840dun2yl8k" path="res://sprites/Elite-Kitchens-1080x675.jpg" id="3_6hox3"]
+[ext_resource type="PackedScene" uid="uid://bh6un7fnopfma" path="res://assets/pan.tscn" id="3_7wcdp"]
+[ext_resource type="Script" path="res://scripts/mouse_sprite.gd" id="4_bxjdr"]
+[ext_resource type="PackedScene" uid="uid://ydfq4n8hfyho" path="res://assets/plate.tscn" id="5_er77e"]
+[ext_resource type="PackedScene" uid="uid://cncrirmti6srb" path="res://assets/customer.tscn" id="6_e407v"]
+
+[node name="Level" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5fh3y")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(1.14592, 1.09592)
+texture = ExtResource("2_t5k1w")
+
+[node name="Elite-kitchens-1080x675" type="Sprite2D" parent="."]
+position = Vector2(960.75, 818)
+scale = Vector2(1.80602, 0.856296)
+texture = ExtResource("3_6hox3")
+
+[node name="ItemSpawner" parent="." instance=ExtResource("1_dteb2")]
+position = Vector2(71, 909)
+itemName = "seaweed"
+
+[node name="ItemSpawner2" parent="." instance=ExtResource("1_dteb2")]
+position = Vector2(230, 909)
+itemName = "seaweed"
+
+[node name="Pan" parent="." instance=ExtResource("3_7wcdp")]
+position = Vector2(1306, 819)
+
+[node name="Pan2" parent="." instance=ExtResource("3_7wcdp")]
+position = Vector2(1501, 819)
+
+[node name="Plate" parent="." instance=ExtResource("5_er77e")]
+position = Vector2(729, 905)
+
+[node name="Plate2" parent="." instance=ExtResource("5_er77e")]
+position = Vector2(922, 905)
+
+[node name="Customer" parent="." instance=ExtResource("6_e407v")]
+position = Vector2(821, 307)
+
+[node name="MouseSprite" type="Sprite2D" parent="."]
+script = ExtResource("4_bxjdr")
