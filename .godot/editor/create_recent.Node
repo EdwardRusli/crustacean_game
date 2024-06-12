@@ -1,7 +1,9 @@
-Control
-Node2D
-Sprite2D
-Label
 Timer
+Label
+ColorRect
+MarginContainer
+Node2D
+Control
+Sprite2D
 TextureButton
 Button

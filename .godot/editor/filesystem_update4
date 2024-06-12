@@ -1,5 +1,5 @@
 res://scenes/test.tscn
 res://scripts/customer.gd
 res://assets/customer.tscn
-res://addons/dialogue_manager/example_balloon/example_balloon.gd
 res://assets/dialogue_bubble.tscn
+res://scripts/dialogue_bubble.gd
