@@ -1,19 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://brwkubsfyeprn"]
+[gd_scene load_steps=4 format=3 uid="uid://brwkubsfyeprn"]
 
 [ext_resource type="Script" path="res://scripts/dialogue_bubble.gd" id="1_hxa7t"]
+[ext_resource type="Texture2D" uid="uid://byjdvetheohtm" path="res://sprites/speechbubble.png" id="2_uovl5"]
+[ext_resource type="FontFile" uid="uid://b8g4w6k4k5jrh" path="res://fonts/Comic Sans MS 400.ttf" id="3_ja5ca"]
 
 [node name="DialogueBubble" type="Node2D"]
 script = ExtResource("1_hxa7t")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 355.0
-offset_bottom = 240.0
+[node name="Speechbubble" type="Sprite2D" parent="."]
+position = Vector2(176, 108.5)
+scale = Vector2(0.302311, 0.275995)
+texture = ExtResource("2_uovl5")
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
-layout_mode = 1
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = 21.0
+offset_right = 331.0
+offset_bottom = 205.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 8
@@ -21,15 +27,20 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="DialogueLabel" type="Label" parent="ColorRect/MarginContainer"]
+[node name="DialogueLabel" type="Label" parent="MarginContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec arcu vehicula, pellentesque erat vel, scelerisque leo. Curabitur vel ex nec magna iaculis pulvinar. Fusce efficitur sem lacinia, semper ante sit amet, fringilla enim. Donec lacinia ipsum finibus faucibus fermentum. Integer commodo sit amet arcu eu porta."
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_ja5ca")
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea abcdef"
+horizontal_alignment = 3
 autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 3
+visible_characters_behavior = 1
+visible_ratio = -0.00595238
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

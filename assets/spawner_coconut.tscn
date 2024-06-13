@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7thyr04gm6gk"]
+
+[ext_resource type="Script" path="res://scripts/spawner_coconut.gd" id="1_2v123"]
+[ext_resource type="PackedScene" uid="uid://dmyo3lkmcim5i" path="res://assets/spawnersingle_coconut.tscn" id="2_vree5"]
+[ext_resource type="Texture2D" uid="uid://djg77f86ln8dj" path="res://sprites/coconut_dispenser.png" id="2_xebpj"]
+
+[node name="spawner_coconut" type="Node2D"]
+script = ExtResource("1_2v123")
+coconut_scene = ExtResource("2_vree5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(64, 144)
+texture = ExtResource("2_xebpj")
+
+[node name="RefillTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="RefillTimer" to="." method="_on_refill_timer_timeout"]

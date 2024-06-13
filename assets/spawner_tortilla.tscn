@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bii8dwenasvuc"]
+
+[ext_resource type="Script" path="res://scripts/item_spawner.gd" id="1_sf2po"]
+[ext_resource type="Texture2D" uid="uid://c5o6lom5ctrta" path="res://sprites/tortilla.png" id="2_ohbcy"]
+
+[node name="spawner_tortilla" type="Node2D"]
+script = ExtResource("1_sf2po")
+itemName = "tortilla"
+itemType = "raw"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("2_ohbcy")
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

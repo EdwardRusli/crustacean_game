@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8bafibplyvlq"]
+
+[ext_resource type="Script" path="res://scripts/item_spawner.gd" id="1_rbtdr"]
+[ext_resource type="Texture2D" uid="uid://d2fnaxu06gvge" path="res://sprites/condiment_tomato_salsa.png" id="2_qna8f"]
+
+[node name="spawner_salsa" type="Node2D"]
+script = ExtResource("1_rbtdr")
+itemName = "salsa"
+itemType = "raw"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("2_qna8f")
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

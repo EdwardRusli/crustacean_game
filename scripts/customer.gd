@@ -4,12 +4,19 @@ extends Node2D
 @onready var test_label: Label = $Label
 @onready var dialogue_bubble: Node2D = $DialogueBubble
 @onready var dialogue_timer: Timer = $DialogueTimer
+@onready var patience_timer: Timer = $PatienceTimer
+@onready var patience_bar: ProgressBar = $PatienceBar
 
-signal on_order_received
-signal on_all_orders_finished
+var used_slot: int = 0 # which slot on the orders is this
+var patience_in_seconds = 5
+var time_elapsed = 0
 
-var orders: Array[String] = ["plate_cooked_seaweed", "plate_cooked_seaweed"]
-#var orders: Array[String]
+#signal on_order_received
+signal on_all_orders_finished(slot)
+signal on_out_of_patience(slot)
+
+#var orders: Array[String] = ["plate_cooked_seaweed", "plate_cooked_seaweed"]
+@export var orders: Array[String]
 var orders_string # plaintext of orders
 
 var current_line
@@ -22,14 +29,14 @@ var dialogue_lines: Array[String] = [
 
 var dialogue_breakpoints: Array[int] = [
 	#which lines does it want to get stuck on? (don't autoscroll after this line) (0 based)
-	1
+	
 ]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	button = get_child(0)
 	test_label = get_child(1)
-	
+	patience_timer.start(patience_in_seconds)
 	orders_string = ''
 	for i in orders:
 		orders_string = orders_string + i + '\n'
@@ -41,25 +48,33 @@ func _ready():
 
 	dialogue_bubble.lines = dialogue_lines
 	dialogue_bubble.show()
+	#patience_bar.show()
 	current_line = 0
 	dialogue_bubble.print_dialogue(current_line)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	time_elapsed += delta
+	#print(time_elapsed)
+	patience_bar.value = 100 * time_elapsed / patience_in_seconds
 	if (Input.is_action_just_released("mouse_left")&&button.is_hovered()&&SceneManager.currentlyHeld != null):
 		#if something is dropped onto this pan
 
 		#check if the thing is in the order list
 		var dropped_thing_index = orders.find(SceneManager.currentlyHeld.itemName)
 		
-		if (dropped_thing_index != - 1): # if it is a valid item
+		if (dropped_thing_index != - 1): # if the customer ordered this
 			#remove item from orders
 			orders.pop_at(dropped_thing_index)
 
-			#empty the origin plate
-			SceneManager.currentlyHeld.empty_plate()
+			#emit signal that one of the orders have been fulfilled
+			#on_order_received.emit()
 
-			on_order_received.emit()
+			if (SceneManager.currentlyHeld.itemType == "plate"):
+				#empty the origin plate if it is a plate
+				SceneManager.currentlyHeld.empty_plate()
+			if (SceneManager.currentlyHeld.itemType == "coconut"):
+				SceneManager.currentlyHeld.get_parent().take_drink()
 
 			#update orders
 			orders_string = ''
@@ -67,17 +82,18 @@ func _process(delta):
 				orders_string = orders_string + i + '\n'
 			test_label.text = orders_string
 			
-			next_line() # fix this asap, if food given before finished yapping, it could skip to next dialogue -> softlock
+			#next_line() # fix this asap, if food given before finished yapping, it could skip to next dialogue -> softlock
 			
 			if (orders.size() == 0):
-				on_all_orders_finished.emit()
+				#emit signal that all orders are fulfilled
+				on_all_orders_finished.emit(used_slot)
 				queue_free()
 
-			print(orders)
+			#print(orders)
 
 func _on_dialogue_line_finished_printing():
 	if (!dialogue_breakpoints.has(dialogue_bubble.curr_line)):
-		dialogue_timer.start()
+		dialogue_timer.start(RandomNumberGenerator.new().randf_range(3, 5))
 
 func _on_dialogue_timer_timeout():
 	next_line()
@@ -85,3 +101,8 @@ func _on_dialogue_timer_timeout():
 func next_line():
 	current_line += 1
 	dialogue_bubble.print_dialogue(current_line)
+
+func _on_patience_timer_timeout():
+	print("out of patience")
+	on_out_of_patience.emit(used_slot)
+	queue_free()

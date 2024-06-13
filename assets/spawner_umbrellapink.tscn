@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd48vcc7asats"]
+
+[ext_resource type="Script" path="res://scripts/item_spawner.gd" id="1_vc2ap"]
+[ext_resource type="Texture2D" uid="uid://cbbxrj50rblr8" path="res://sprites/umbrellapink.png" id="2_1ewhu"]
+
+[node name="spawner_umbrellapink" type="Node2D"]
+script = ExtResource("1_vc2ap")
+itemName = "umbrellapink"
+itemType = "raw"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("2_1ewhu")
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

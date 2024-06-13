@@ -1,11 +1,11 @@
 extends Node2D
 
-@onready var label: Label = $ColorRect/MarginContainer/DialogueLabel
+@onready var label: Label = $MarginContainer/DialogueLabel
 @onready var timer: Timer = $Timer
 
 @export var lines: Array[String]
 var curr_line
-var curr_letter = -1
+var curr_letter = 0
 
 signal current_line_finished_typing
 
@@ -26,16 +26,16 @@ func print_dialogue(line: int):
 		print("out of lines")
 		queue_free()
 	else:
-		label.text = ''
+		label.text = lines[curr_line]
 		#begin printing letters
 		next_letter()
 
 func next_letter():
-	label.text += lines[curr_line][curr_letter]
+	label.visible_characters = curr_letter
 	curr_letter += 1
-	if (curr_letter >= lines[curr_line].length()):
+	if (curr_letter >= lines[curr_line].length() + 1):
 		#if current line is finished printing
-		print('ended')
+		#print('ended')
 		current_line_finished_typing.emit()
 		#await get_tree().create_timer(2.0).timeout
 		#start_or_next_dialogue()
