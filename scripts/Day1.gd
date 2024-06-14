@@ -66,20 +66,26 @@ var customer_count = -1
 var served_customers = 0
 var customers = [
 	#name, orders, patience_in_seconds, dialogue_lines, dialogue_breakpoints, customer_sprite
-	["random", ["plate_tortilla_kelp"],20],
-	["random", ["plate_tortilla_kelp"],20],
-	["random", ["plate_tortilla_kelp"],20],
-	["random", ["plate_tortilla_kelp_salsa"],20],
-	["random", ["plate_tortilla_kelp_mayo"],20],
+	
+	["random", ["plate_tortilla_kelp", "coconut"],30],
+	# ["random", ["plate_tortilla_kelp"],30],
+	# ["random", ["plate_tortilla_kelp"],30],
+	# ["random", ["plate_tortilla_kelp_salsa"],30],
+	# ["random", ["plate_tortilla_kelp_mayo"],30],
+	["loansharkshark", [],10, ["Hi, I hope you’re ready, I’ll come again in 2 days to pick up the money your Uncle has owed me."], [0],"res://sprites/customers/loansharkshark/sharkfrown.png"]
 ]
 var animation_player
-#var audio_stream_player
+var audio_stream_player
 var spawn_order
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation_player = get_parent().get_node("AnimationPlayer")
-	#audio_stream_player = get_parent().get_node("AudioStreamPlayer")
+	audio_stream_player = get_parent().get_node("AudioStreamPlayer")
+	audio_stream_player.stream = load("res://sounds/music_gameplay1.mp3")
+	audio_stream_player.finished.connect(_on_audio_stream_player_finished)
+	audio_stream_player.play()
+
 	animation_player.play("DayStart")
 	root = get_parent()
 
@@ -111,6 +117,18 @@ func spawn_random_customer(slot: int, orders, patience_in_seconds: int):
 			patience_in_seconds
 		)
 
+	customer_instance.on_all_orders_finished.connect(_on_order_finished)
+	customer_instance.on_out_of_patience.connect(_on_order_patience_run_out)
+
+func spawn_customer(slot, dialogue, breakpoints, orders, sprite, patience_in_seconds):
+	var customer_instance = root.spawn_customer(
+			slot,
+			dialogue,
+			breakpoints,
+			orders,
+			load(sprite),
+			patience_in_seconds
+		)
 	customer_instance.on_all_orders_finished.connect(_on_order_finished)
 	customer_instance.on_out_of_patience.connect(_on_order_patience_run_out)
 
@@ -163,6 +181,8 @@ func next_customer(slot):
 		#if still has customers
 		if (customers[customer_count][0] == "random"):
 			spawn_random_customer(slot, customers[customer_count][1], customers[customer_count][2])
+		else:
+			spawn_customer(slot, customers[customer_count][3], customers[customer_count][4], customers[customer_count][1], customers[customer_count][5], customers[customer_count][2])
 
 var has_ended = false
 func end_day():
@@ -171,4 +191,6 @@ func end_day():
 		animation_player.play("DayEnd")
 		await get_tree().create_timer(5).timeout
 		get_tree().change_scene_to_file("") # what do you want
-	
+
+func _on_audio_stream_player_finished():
+	audio_stream_player.play()

@@ -1,16 +1,24 @@
 [gd_scene load_steps=3 format=3 uid="uid://du4i2iqbp31d0"]
 
 [ext_resource type="Script" path="res://scripts/item_spawner.gd" id="1_d04xo"]
-[ext_resource type="Texture2D" uid="uid://cgyakcmo1bauy" path="res://sprites/shavedice/siice.png" id="2_8ov4k"]
+[ext_resource type="Texture2D" uid="uid://cejt6gwuooed7" path="res://sprites/shavedice/siice_adjustedsize.png" id="2_38c7t"]
 
 [node name="spawnersingle_shavedice" type="Node2D"]
 script = ExtResource("1_d04xo")
-itemName = "coconut"
+itemName = "shavedice"
 itemType = "coconut"
 
 [node name="TextureButton" type="TextureButton" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-texture_normal = ExtResource("2_8ov4k")
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -70.0
+offset_right = 30.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("2_38c7t")
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

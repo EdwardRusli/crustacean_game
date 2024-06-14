@@ -3,8 +3,7 @@
 [ext_resource type="Script" path="res://scripts/scenemanager.gd" id="1_ly82i"]
 [ext_resource type="PackedScene" uid="uid://cncrirmti6srb" path="res://assets/customer.tscn" id="2_ylio4"]
 [ext_resource type="Texture2D" uid="uid://b163biwc867u5" path="res://sprites/crabstobgbg.png" id="3_aktpb"]
-[ext_resource type="Texture2D" uid="uid://cjapiatva2b08" path="res://sprites/counter.png" id="4_g0mrv"]
-[ext_resource type="Texture2D" uid="uid://bp840dun2yl8k" path="res://sprites/Elite-Kitchens-1080x675.jpg" id="4_vpgrb"]
+[ext_resource type="Texture2D" uid="uid://831j43qjxe0a" path="res://sprites/crabstobg.png" id="4_06bmi"]
 [ext_resource type="Script" path="res://scripts/Day1.gd" id="5_d1tkm"]
 [ext_resource type="PackedScene" uid="uid://bh6un7fnopfma" path="res://assets/pan.tscn" id="6_nm6pg"]
 [ext_resource type="PackedScene" uid="uid://ydfq4n8hfyho" path="res://assets/plate.tscn" id="7_m6lpx"]
@@ -24,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://ceq14q3035ou8" path="res://assets/spawner_shavedice.tscn" id="22_f548n"]
 [ext_resource type="FontFile" uid="uid://dgd6rxl8ffw81" path="res://fonts/MouldyCheeseRegular-WyMWG.ttf" id="23_v8ine"]
 [ext_resource type="PackedScene" uid="uid://chegqwimv066k" path="res://assets/spawner_syrup.tscn" id="23_wqopa"]
+[ext_resource type="AudioStream" uid="uid://djn22s1pvj2x6" path="res://sounds/menuclick.mp3" id="24_btcut"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glkt0"]
 bg_color = Color(0.7, 0.521033, 0.287, 1)
@@ -32,80 +32,58 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="Animation" id="Animation_aegtp"]
-resource_name = "DayEnd"
-length = 5.0
+[sub_resource type="Animation" id="Animation_qhsj6"]
+resource_name = "CutsceneEnd"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DayIntroOutroRect:color")
+tracks/0/path = NodePath("SceneFadeInOutRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.784314)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DayIntroOutroRect:visible")
+tracks/1/path = NodePath("SceneFadeInOutRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DayLabel:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1, 2.5),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(863, 19), Vector2(863, 342)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("DayLabel:theme_override_font_sizes/font_size")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1, 2.5),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [48, 100]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("SceneFadeInOutRect:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("SceneFadeInOutRect:color")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(3.5, 5),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v76q6"]
+resource_name = "CutsceneStart"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SceneFadeInOutRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SceneFadeInOutRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ustk6"]
@@ -195,66 +173,163 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(321, 166), Vector2(151, 74)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DayLabel:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Day 1"]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
-[sub_resource type="Animation" id="Animation_qhsj6"]
-resource_name = "CutsceneEnd"
+[sub_resource type="Animation" id="Animation_6the7"]
+resource_name = "DayEnd"
+length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SceneFadeInOutRect:visible")
+tracks/0/path = NodePath("DayIntroOutroRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.784314)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DayIntroOutroRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SceneFadeInOutRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DayLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(885, 23), Vector2(801, 342)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DayLabel:theme_override_font_sizes/font_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [48, 100]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SceneFadeInOutRect:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4, 6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_v76q6"]
-resource_name = "CutsceneStart"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SceneFadeInOutRect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SceneFadeInOutRect:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DayLabel:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(151, 74), Vector2(321, 166)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DayLabel:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": ["Day 1", "Done!"]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SceneFadeInOutRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("OutroSFXPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("24_btcut")
+}],
+"times": PackedFloat32Array(2.5)
+}
+tracks/8/use_blend = true
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+"values": [0.0, 0.0, -80.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8bq7d"]
 _data = {
 "CutsceneEnd": SubResource("Animation_qhsj6"),
 "CutsceneStart": SubResource("Animation_v76q6"),
-"DayEnd": SubResource("Animation_aegtp"),
+"DayEnd": SubResource("Animation_6the7"),
 "DayStart": SubResource("Animation_ustk6")
 }
 
@@ -274,73 +349,68 @@ texture = ExtResource("3_aktpb")
 
 [node name="Counter" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
-texture = ExtResource("4_g0mrv")
-
-[node name="Elite-kitchens-1080x675" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(1.80602, 0.856296)
-texture = ExtResource("4_vpgrb")
+texture = ExtResource("4_06bmi")
 
 [node name="CustomerSpawnManager" type="Timer" parent="."]
 autostart = true
 script = ExtResource("5_d1tkm")
 
 [node name="Pan" parent="." instance=ExtResource("6_nm6pg")]
-position = Vector2(1476, 869)
+position = Vector2(1462, 846)
 
 [node name="Pan2" parent="." instance=ExtResource("6_nm6pg")]
-position = Vector2(1715, 884)
+position = Vector2(1679, 843)
 
 [node name="Plate" parent="." instance=ExtResource("7_m6lpx")]
-position = Vector2(800, 804)
+position = Vector2(581, 823)
 
 [node name="Plate2" parent="." instance=ExtResource("7_m6lpx")]
-position = Vector2(1000, 804)
+position = Vector2(877, 828)
 
 [node name="spawner_kelp" parent="." instance=ExtResource("8_w1keq")]
-position = Vector2(80, 867)
+position = Vector2(798, 628)
 
 [node name="spawner_tortilla" parent="." instance=ExtResource("9_5xbhe")]
-position = Vector2(317, 613)
+position = Vector2(320, 624)
 
 [node name="spawner_mayo" parent="." instance=ExtResource("10_n6xjg")]
-position = Vector2(560, 872)
+position = Vector2(101, 855)
 
 [node name="spawner_salsa" parent="." instance=ExtResource("11_l204t")]
-position = Vector2(563, 700)
+position = Vector2(237, 862)
 
 [node name="spawner_coconut" parent="." instance=ExtResource("12_gwi72")]
-position = Vector2(1793, 464)
+position = Vector2(1499, 808)
 
 [node name="spawner_meat" parent="." instance=ExtResource("13_qwf0n")]
-position = Vector2(321, 798)
+position = Vector2(1021, 627)
 
 [node name="spawner_umbrellablue" parent="." instance=ExtResource("14_smvj8")]
-position = Vector2(835, 548)
+position = Vector2(1573, 754)
 
 [node name="spawner_umbrellapink" parent="." instance=ExtResource("15_y86ux")]
-position = Vector2(989, 552)
+position = Vector2(1579, 652)
 
 [node name="Trashbin" parent="." instance=ExtResource("16_7rjbr")]
-position = Vector2(1253, 916)
+position = Vector2(1226, 891)
+
+[node name="spawner_bread" parent="." instance=ExtResource("18_enc42")]
+position = Vector2(120, 652)
+
+[node name="spawner_cheese" parent="." instance=ExtResource("19_vgqwp")]
+position = Vector2(366, 863)
+
+[node name="spawner_ham" parent="." instance=ExtResource("20_hp5mh")]
+position = Vector2(356, 959)
+
+[node name="spawner_shavedice" parent="." instance=ExtResource("22_f548n")]
+position = Vector2(1731, 829)
+
+[node name="spawner_syrup" parent="." instance=ExtResource("23_wqopa")]
+position = Vector2(1815, 631)
 
 [node name="MouseSprite" type="Sprite2D" parent="."]
 script = ExtResource("17_h06ut")
-
-[node name="spawner_bread" parent="." instance=ExtResource("18_enc42")]
-position = Vector2(109, 648)
-
-[node name="spawner_cheese" parent="." instance=ExtResource("19_vgqwp")]
-position = Vector2(1045, 688)
-
-[node name="spawner_ham" parent="." instance=ExtResource("20_hp5mh")]
-position = Vector2(799, 614)
-
-[node name="spawner_shavedice" parent="." instance=ExtResource("22_f548n")]
-position = Vector2(1643, 517)
-
-[node name="spawner_syrup" parent="." instance=ExtResource("23_wqopa")]
-position = Vector2(1441, 426)
 
 [node name="PauseButton" type="TextureButton" parent="."]
 layout_mode = 0
@@ -352,23 +422,22 @@ offset_bottom = 86.0
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0, 0, 0, 0.784314)
+color = Color(0, 0, 0, 0)
 
 [node name="DayLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 801.0
-offset_top = 342.0
-offset_right = 1122.0
-offset_bottom = 508.0
+offset_left = 885.0
+offset_top = 23.0
+offset_right = 1036.0
+offset_bottom = 97.0
 theme_override_fonts/font = ExtResource("23_v8ine")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_glkt0")
 text = "Day 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SceneFadeInOutRect" type="ColorRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -378,6 +447,10 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_8bq7d")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="OutroSFXPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="timeout" from="CustomerSpawnManager" to="." method="_on_elapsed_timer_timeout"]
 [connection signal="timeout" from="CustomerSpawnManager" to="CustomerSpawnManager" method="_on_timeout"]

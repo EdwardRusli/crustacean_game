@@ -3,10 +3,10 @@ extends Node2D
 @export var itemType: String;
 var button_child
 
-var coconut_umbrellablue = preload ("res://sprites/coconut/coconut blue.png")
-var coconut_umbrellapink = preload ("res://sprites/coconut/coconut pink.png")
+var coconut_umbrellablue = preload ("res://sprites/coconut/coconut blue adjustedsize.png")
+var coconut_umbrellapink = preload ("res://sprites/coconut/coconut pink adjustedsize.png")
 
-var shavedice_syrup = preload ("res://sprites/shavedice/sirup.png")
+var shavedice_syrup = preload ("res://sprites/shavedice/sirup_adjustedsize.png")
 
 var pop_sound = preload ("res://sounds/pop.mp3")
 
@@ -29,8 +29,8 @@ func _process(delta):
 		if (SceneManager.currentlyHeld.itemName == "umbrellapink"):
 			itemName = "coconut_umbrellapink"
 			button_child.texture_normal = coconut_umbrellapink
-		
-		#shaved ice
+	if (itemName == "shavedice"&&Input.is_action_just_released("mouse_left")&&button_child.is_hovered()&&SceneManager.currentlyHeld != null):
+	#shaved ice
 		if (SceneManager.currentlyHeld.itemName == "syrup"):
 			itemName = "shavedice_syrup"
 			button_child.texture_normal = shavedice_syrup

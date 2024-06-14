@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmyo3lkmcim5i"]
 
 [ext_resource type="Script" path="res://scripts/item_spawner.gd" id="1_bt7lr"]
-[ext_resource type="Texture2D" uid="uid://bp4b5fpxi5yb" path="res://sprites/coconut/coconut doang.png" id="2_q7nmh"]
+[ext_resource type="Texture2D" uid="uid://d3oxjjcij8l5e" path="res://sprites/coconut/coconut doang adjustedsize.png" id="2_4fx45"]
 
 [node name="spawnersingle_coconut" type="Node2D"]
 script = ExtResource("1_bt7lr")
@@ -9,8 +9,16 @@ itemName = "coconut"
 itemType = "coconut"
 
 [node name="TextureButton" type="TextureButton" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-texture_normal = ExtResource("2_q7nmh")
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -83.0
+offset_right = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("2_4fx45")
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

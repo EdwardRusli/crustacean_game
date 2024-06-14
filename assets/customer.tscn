@@ -8,7 +8,7 @@
 bg_color = Color(0.237539, 0.237539, 0.237539, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i00m7"]
-bg_color = Color(0, 0.566667, 1, 1)
+bg_color = Color(1, 0.135406, 0.540822, 1)
 
 [sub_resource type="Theme" id="Theme_nj3tk"]
 ProgressBar/styles/background = SubResource("StyleBoxFlat_nqu8l")
@@ -83,6 +83,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DialogueBubble:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nyfhq"]
 _data = {
@@ -110,6 +122,7 @@ texture_normal = ExtResource("2_e86dk")
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -122.0
 offset_top = -233.0
 offset_right = 445.0
@@ -123,7 +136,7 @@ one_shot = true
 
 [node name="DialogueBubble" parent="." instance=ExtResource("3_ydi1j")]
 visible = false
-position = Vector2(2, -332)
+position = Vector2(7, -332)
 
 [node name="PatienceTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -131,10 +144,10 @@ one_shot = true
 
 [node name="PatienceBar" type="ProgressBar" parent="."]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = 10.0
-offset_top = -100.0
-offset_right = 352.0
-offset_bottom = -73.0
+offset_left = -215.0
+offset_top = -349.0
+offset_right = -45.0
+offset_bottom = -322.0
 theme = SubResource("Theme_nj3tk")
 value = 24.35
 show_percentage = false
@@ -144,6 +157,26 @@ metadata/_edit_use_anchors_ = true
 libraries = {
 "": SubResource("AnimationLibrary_nyfhq")
 }
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 8.0
+offset_top = -106.98
+offset_right = 396.0
+offset_bottom = 85.02
+scale = Vector2(0.5, 0.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 396.0
+offset_bottom = 200.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer"]
+layout_mode = 2
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="timeout" from="DialogueTimer" to="." method="_on_dialogue_timer_timeout"]

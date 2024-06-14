@@ -1,11 +1,10 @@
-[music path="res://sounds/music_beach.mp3" fade="0.0" volume="0.0"]
 [background arg="res://sprites/backgrounds/black.png" fade="0.0"]
 [background arg="res://sprites/backgrounds/home.png" fade="2.0"]
 [wait time="3.0"]
 join uncle (uncle happy) 2
 [wait time="1.0"]
 uncle (uncle happy): Hiya Sonny Boy, it's summer vacation and you ain’t got nothing going on right? Come down here to Hawaii and meet with me!
-herbert (uncle happy): Uncle? Wait, wha- 
+herbert (uncle happy): Uncle? Wait, wha-
 uncle (uncle happy): (closes phone line)
 leave uncle
 herbert: What was that about? Well I suppose I do have nothing going on…

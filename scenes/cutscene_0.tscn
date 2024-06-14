@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2kh23pju78dr"]
+[gd_scene load_steps=3 format=3 uid="uid://d2kh23pju78dr"]
 
 [ext_resource type="Script" path="res://scripts/cutscene_player.gd" id="1_q1bbg"]
+[ext_resource type="AudioStream" uid="uid://c07q1kw62ual0" path="res://sounds/music_beach.mp3" id="2_f1s6u"]
 
 [node name="Cutscene" type="Node2D"]
 script = ExtResource("1_q1bbg")
+music = ExtResource("2_f1s6u")
 timelineName = "intro"
 level_to_load_after = "res://scenes/level1.tscn"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

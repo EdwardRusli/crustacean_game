@@ -7,6 +7,31 @@ extends Node2D
 @onready var patience_timer: Timer = $PatienceTimer
 @onready var patience_bar: ProgressBar = $PatienceBar
 @onready var animation_player = $AnimationPlayer
+@onready var hbox_container = $NinePatchRect/MarginContainer/HBoxContainer
+
+var textures = {
+	"coconut": "res://sprites/coconut/coconut doang.png",
+	"coconut_umbrellablue": "res://sprites/coconut/coconut blue.png",
+	"coconut_umbrellapink": "res://sprites/coconut/coconut pink.png",
+	"shavedice": "res://sprites/shavedice/siice.png",
+	"shavedice_syrup": "res://sprites/shavedice/sirup.png",
+	"plate_tortilla_kelp": "res://sprites/taco/taco kelp/taco kelp.png",
+	"plate_tortilla_kelp_mayo": "res://sprites/taco/taco kelp/taco kelp mayo.png",
+	"plate_tortilla_kelp_salsa": "res://sprites/taco/taco kelp/taco kelp salsa.png",
+	"plate_tortilla_meat": "res://sprites/taco/taco meat/taco meat.png",
+	"plate_tortilla_meat_mayo": "res://sprites/taco/taco meat/taco meat mayo.png",
+	"plate_tortilla_meat_salsa": "res://sprites/taco/taco meat/taco meat salsa.png",
+	"plate_tortilla_kelpmeat": "res://sprites/taco/taco meat kelp/taco meat kelp.png",
+	"plate_tortilla_kelpmeat_mayo": "res://sprites/taco/taco meat kelp/taco meat kelp mayo.png",
+	"plate_tortilla_kelpmeat_salsa": "res://sprites/taco/taco meat kelp/taco meat kelp salsa.png",
+	"plate_bread_cheese_cooked": "res://sprites/sandwich/sandwhich cheese cooked.png",
+	"plate_bread_kelp_cooked": "res://sprites/sandwich/sandwhich kelp cooked.png",
+	"plate_bread_ham_cooked": "res://sprites/sandwich/sandwhich meat cooked.png",
+	"plate_bread_cheese_kelp_cooked": "res://sprites/sandwich/sandwich kelp cheese cooked.png",
+	"plate_bread_cheese_ham_cooked": "res://sprites/sandwich/sandwhich meat cheese cooked.png",
+	"plate_bread_kelp_ham_cooked": "res://sprites/sandwich/sandwhich kelp meat cooked.png",
+	"plate_bread_full_cooked": "res://sprites/sandwich/sandwhich lengkap cooked.png",
+}
 
 var used_slot: int = 0 # which slot on the orders is this
 var patience_in_seconds = 5
@@ -40,8 +65,13 @@ func _ready():
 	patience_timer.start(patience_in_seconds)
 	orders_string = ''
 	for i in orders:
+		var texture_rect = TextureRect.new()
+		texture_rect.texture = load(textures[i])
+		hbox_container.add_child(texture_rect)
 		orders_string = orders_string + i + '\n'
+
 	test_label.text = orders_string
+
 	animation_player.play("customer_appear")
 
 	await get_tree().create_timer(2.0).timeout
@@ -82,8 +112,13 @@ func _process(delta):
 
 			#update orders
 			orders_string = ''
+			for n in hbox_container.get_children():
+				hbox_container.remove_child(n)
 			for i in orders:
 				orders_string = orders_string + i + '\n'
+				var texture_rect = TextureRect.new()
+				texture_rect.texture = load(textures[i])
+				hbox_container.add_child(texture_rect)
 			test_label.text = orders_string
 			
 			#next_line() # fix this asap, if food given before finished yapping, it could skip to next dialogue -> softlock
