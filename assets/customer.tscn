@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cncrirmti6srb"]
+[gd_scene load_steps=10 format=3 uid="uid://cncrirmti6srb"]
 
 [ext_resource type="Script" path="res://scripts/customer.gd" id="1_hgdmj"]
 [ext_resource type="Texture2D" uid="uid://nm7mfov78vio" path="res://sprites/customers/fish/fish1.png" id="2_e86dk"]
@@ -14,6 +14,82 @@ bg_color = Color(0, 0.566667, 1, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_nqu8l")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_i00m7")
 
+[sub_resource type="Animation" id="Animation_n73ti"]
+resource_name = "customer_appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureButton:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Vector2(-288, 40), Vector2(-288, -335), Vector2(-288, -315)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PatienceBar:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7pk5s"]
+resource_name = "customer_disappear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureButton:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, -2, -2),
+"update": 0,
+"values": [Vector2(-288, -315), Vector2(-288, -335), Vector2(-288, 40)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PatienceBar:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nyfhq"]
+_data = {
+"customer_appear": SubResource("Animation_n73ti"),
+"customer_disappear": SubResource("Animation_7pk5s")
+}
+
 [node name="Customer" type="Node2D"]
 script = ExtResource("1_hgdmj")
 
@@ -24,9 +100,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -288.0
-offset_top = -315.0
+offset_top = 40.0
 offset_right = 169.0
-offset_bottom = 585.0
+offset_bottom = 940.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
@@ -54,6 +130,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="PatienceBar" type="ProgressBar" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 offset_left = 10.0
 offset_top = -100.0
 offset_right = 352.0
@@ -62,6 +139,11 @@ theme = SubResource("Theme_nj3tk")
 value = 24.35
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nyfhq")
+}
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="timeout" from="DialogueTimer" to="." method="_on_dialogue_timer_timeout"]

@@ -6,6 +6,7 @@ extends Node2D
 @onready var dialogue_timer: Timer = $DialogueTimer
 @onready var patience_timer: Timer = $PatienceTimer
 @onready var patience_bar: ProgressBar = $PatienceBar
+@onready var animation_player = $AnimationPlayer
 
 var used_slot: int = 0 # which slot on the orders is this
 var patience_in_seconds = 5
@@ -41,7 +42,8 @@ func _ready():
 	for i in orders:
 		orders_string = orders_string + i + '\n'
 	test_label.text = orders_string
-	
+	animation_player.play("customer_appear")
+
 	await get_tree().create_timer(2.0).timeout
 
 	dialogue_bubble.current_line_finished_typing.connect(_on_dialogue_line_finished_printing)
@@ -75,6 +77,8 @@ func _process(delta):
 				SceneManager.currentlyHeld.empty_plate()
 			if (SceneManager.currentlyHeld.itemType == "coconut"):
 				SceneManager.currentlyHeld.get_parent().take_drink()
+			if (SceneManager.currentlyHeld.itemType == "shavedice"):
+				SceneManager.currentlyHeld.get_parent().take_drink()
 
 			#update orders
 			orders_string = ''
@@ -87,7 +91,9 @@ func _process(delta):
 			if (orders.size() == 0):
 				#emit signal that all orders are fulfilled
 				on_all_orders_finished.emit(used_slot)
-				queue_free()
+				patience_timer.paused = true
+				#queue_free()
+				animation_player.play("customer_disappear")
 
 			#print(orders)
 
@@ -105,4 +111,5 @@ func next_line():
 func _on_patience_timer_timeout():
 	print("out of patience")
 	on_out_of_patience.emit(used_slot)
-	queue_free()
+	button.disabled = true
+	animation_player.play("customer_disappear")

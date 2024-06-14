@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw6jddqj1old7"]
+
+[ext_resource type="Script" path="res://scripts/item_spawner.gd" id="1_nhk68"]
+[ext_resource type="Texture2D" uid="uid://bikxh26sy87it" path="res://sprites/sandwich/bread.png" id="2_ndccs"]
+
+[node name="spawner_bread" type="Node2D"]
+script = ExtResource("1_nhk68")
+itemName = "bread"
+itemType = "raw"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("2_ndccs")
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

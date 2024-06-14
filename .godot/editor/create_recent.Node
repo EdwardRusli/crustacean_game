@@ -1,9 +1,10 @@
+ColorRect
+AudioStreamPlayer
 Node
 ProgressBar
 Timer
 Sprite2D
 Label
-ColorRect
 MarginContainer
 Node2D
 Control

@@ -39,8 +39,9 @@ horizontal_alignment = 3
 autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 3
+visible_characters = 0
 visible_characters_behavior = 1
-visible_ratio = -0.00595238
+visible_ratio = 0.0
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

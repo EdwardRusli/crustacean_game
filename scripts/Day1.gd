@@ -12,68 +12,85 @@ var sprites = [
 ]
 
 var dialogues = [
-    ["I’m so tired of my boss. ",
-    "He works me to the bone and pays me the bear minimum. ",
-    "I swear to the Crustacean Gods that I'm gonna quit one day.",],
+	["I’m so tired of my boss. ",
+	"He works me to the bone and pays me the bear minimum. ",
+	"I swear to the Crustacean Gods that I'm gonna quit one day.",],
 
-    ["It's a great sunny day today",
-    "How are you feeling? I’m great!",
-    "Man, I am so excited to eat!",],
+	["It's a great sunny day today",
+	"How are you feeling? I’m great!",
+	"Man, I am so excited to eat!",],
 
-    ["Can you hurry up with my food?",
-    "My kids are waiting and you DO NOT want to see them hangry.",
-    "Can’t you work faster?!",
-    "Do you even know what you’re doing?!",],
+	["Can you hurry up with my food?",
+	"My kids are waiting and you DO NOT want to see them hangry.",
+	"Can’t you work faster?!",
+	"Do you even know what you’re doing?!",],
 
-    ["Is there any discount?",
-    "I have a coupon. Can I use that?",
-    "Is there any membership benefit?",
-    "Is there a minimum order to get something extra?",],
+	["Is there any discount?",
+	"I have a coupon. Can I use that?",
+	"Is there any membership benefit?",
+	"Is there a minimum order to get something extra?",],
 
-    ["This place is my FAVORITE!",
-    "The food is just so great!",
-    "I wish I could come here every single day.",
-    "Especially that white meat, I still don’t know what they put in it to make it taste so good! Can you tell me what the secret recipe is?",],
+	["This place is my FAVORITE!",
+	"The food is just so great!",
+	"I wish I could come here every single day.",
+	"Especially that white meat, I still don’t know what they put in it to make it taste so good! Can you tell me what the secret recipe is?",],
 
-    ["Did you watch the surf competition yesterday?",
-    "It was so exciting!",
-    "In the end though Jessica got the best out of Edward…",
-    "Edward was utterly left in the dust by her! ",],
+	["Did you watch the surf competition yesterday?",
+	"It was so exciting!",
+	"In the end though Jessica got the best out of Edward…",
+	"Edward was utterly left in the dust by her! ",],
 
-    ["This is the best vacation I have been on!",
-    "I can’t wait to go to the water park tomorrow!",
-    "Man, I need to get me one of those flower necklaces.",
-    "I hope this vacation never ends!",],
+	["This is the best vacation I have been on!",
+	"I can’t wait to go to the water park tomorrow!",
+	"Man, I need to get me one of those flower necklaces.",
+	"I hope this vacation never ends!",],
 
-    ["No disturbances, just me, my book, and the sound of the sea.",
-    "I’ve been waiting for weeks to read this new book.",
-    "This author is just my favorite. The way she captures the moment is mesmerizing. ",],
+	["No disturbances, just me, my book, and the sound of the sea.",
+	"I’ve been waiting for weeks to read this new book.",
+	"This author is just my favorite. The way she captures the moment is mesmerizing. ",],
 
-    ["There’s apparently a concert being held for the musician Catherine.",
-    "It's her 4th album apparently and it's selling like hot cakes.",
-    "Personally, I’m not a big fan of her genre. But, I can appreciate her talent in music.",],
+	["There’s apparently a concert being held for the musician Catherine.",
+	"It's her 4th album apparently and it's selling like hot cakes.",
+	"Personally, I’m not a big fan of her genre. But, I can appreciate her talent in music.",],
 
-    ["Have you heard about what’s happening in the news?",
-    "The world just keeps getting worse and worse.",
-    "Please let things get better. I can't stand for all of this conflict anymore.",],
+	["Have you heard about what’s happening in the news?",
+	"The world just keeps getting worse and worse.",
+	"Please let things get better. I can't stand for all of this conflict anymore.",],
 
-    ["Tell Kayla to wait a bit longer, the food’s not done yet.",
-    "Man, she’s gonna be upset.",
-    "Can you go a little faster? I’m sorry but we’re really in a hurry. ",],
+	["Tell Kayla to wait a bit longer, the food’s not done yet.",
+	"Man, she’s gonna be upset.",
+	"Can you go a little faster? I’m sorry but we’re really in a hurry. ",],
 ]
 
 var customer_count = -1
+var served_customers = 0
 var customers = [
 	#name, orders, patience_in_seconds, dialogue_lines, dialogue_breakpoints, customer_sprite
-	["random", ["coconut"],15],
-	["random", ["kelp", "coconut"],15],
-	["random", ["meat"],15],
-	["random", ["coconut"],15]
+	["random", ["plate_tortilla_kelp"],20],
+	["random", ["plate_tortilla_kelp"],20],
+	["random", ["plate_tortilla_kelp"],20],
+	["random", ["plate_tortilla_kelp_salsa"],20],
+	["random", ["plate_tortilla_kelp_mayo"],20],
 ]
+var animation_player
+#var audio_stream_player
+var spawn_order
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	animation_player = get_parent().get_node("AnimationPlayer")
+	#audio_stream_player = get_parent().get_node("AudioStreamPlayer")
+	animation_player.play("DayStart")
 	root = get_parent()
+
+	#manage initial spawning order
+	
+	#slot, time
+	spawn_order = [0, 1, 2]
+	
+	randomize()
+	spawn_order.shuffle()
+	customers.shuffle() # randomize order of customers appearance
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -99,8 +116,15 @@ func spawn_random_customer(slot: int, orders, patience_in_seconds: int):
 
 func _on_timeout():
 	elapsed_time += 1
+
 	#print(elapsed_time)
-	if (elapsed_time == 1):
+	if (elapsed_time == 5):
+		next_customer(spawn_order[0])
+	if (elapsed_time == 8):
+		next_customer(spawn_order[1])
+	if (elapsed_time == 12):
+		next_customer(spawn_order[2])
+	
 		# root.spawn_customer(
 		# 	0,
 		# 	test,
@@ -112,25 +136,39 @@ func _on_timeout():
 		# spawn_random_customer(0, ["coconut"])
 		# spawn_random_customer(1, ["coconut"])
 		# spawn_random_customer(2, ["coconut"])
-		next_customer(0)
-		next_customer(1)
-		next_customer(2)
+		#next_customer(0)
+		#next_customer(1)
+		#next_customer(2)
 
 func _on_order_finished(slot):
 	print("slot " + str(slot) + " is free")
+	served_customers += 1
 	next_customer(slot)
 
 func _on_order_patience_run_out(slot):
 	print("slot " + str(slot) + " out of patience")
+	served_customers += 1
 	next_customer(slot)
 
 func next_customer(slot):
-	await get_tree().create_timer(RandomNumberGenerator.new().randf_range(2, 5)).timeout
+	var rand = RandomNumberGenerator.new().randf_range(2, 5)
+	print(rand)
+	await get_tree().create_timer(rand).timeout
+	
 	customer_count += 1
 	if (customer_count >= customers.size()):
+		end_day()
 		print("out of customers")
 	else:
 		#if still has customers
 		if (customers[customer_count][0] == "random"):
 			spawn_random_customer(slot, customers[customer_count][1], customers[customer_count][2])
+
+var has_ended = false
+func end_day():
+	if (!has_ended&&served_customers == customers.size()):
+		has_ended = true
+		animation_player.play("DayEnd")
+		await get_tree().create_timer(5).timeout
+		get_tree().change_scene_to_file("") # what do you want
 	

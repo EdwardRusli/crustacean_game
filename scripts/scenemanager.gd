@@ -4,16 +4,25 @@ var currentlyHeld = null
 @export var customer_scene: PackedScene
 
 var filledSlots = [false, false, false]
+var pop_sound = preload ("res://sounds/pop.mp3")
+
+var audio_stream_player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	call_deferred("release")
 	
 	pass
-	
+
+func _ready():
+	audio_stream_player = AudioStreamPlayer.new()
+	add_child(audio_stream_player)
+
 func release():
 	if Input.is_action_just_released("mouse_left"):
 		if (currentlyHeld != null):
+			audio_stream_player.stream = pop_sound
+			audio_stream_player.play()
 			currentlyHeld = null
 			print("released")
 

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxmqopusbjnm2"]
+
+[ext_resource type="Script" path="res://scripts/item_spawner.gd" id="1_aeqdj"]
+[ext_resource type="Texture2D" uid="uid://bw82sbvcfkav2" path="res://sprites/sandwich/ham.png" id="2_6owci"]
+
+[node name="spawner_ham" type="Node2D"]
+script = ExtResource("1_aeqdj")
+itemName = "ham"
+itemType = "raw"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("2_6owci")
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

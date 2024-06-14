@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ydfq4n8hfyho"]
 
 [ext_resource type="Script" path="res://scripts/plate.gd" id="1_1n6rs"]
-[ext_resource type="Texture2D" uid="uid://bgsetmrqebwbr" path="res://sprites/plate.png" id="2_unawy"]
+[ext_resource type="Texture2D" uid="uid://cfctqpkf1d4nv" path="res://sprites/plate/plate 192.png" id="2_bv8jw"]
 
 [node name="Plate" type="Node2D"]
 script = ExtResource("1_1n6rs")
@@ -9,6 +9,6 @@ script = ExtResource("1_1n6rs")
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-texture_normal = ExtResource("2_unawy")
+texture_normal = ExtResource("2_bv8jw")
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

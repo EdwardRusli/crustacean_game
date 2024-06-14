@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl33l2bj7b6lb"]
 
 [ext_resource type="Script" path="res://scripts/item_spawner.gd" id="1_hj1wh"]
-[ext_resource type="Texture2D" uid="uid://f4kw7onn5h1s" path="res://sprites/umbrellablue.png" id="2_kyb4k"]
+[ext_resource type="Texture2D" uid="uid://c3uwtjxdb7p0w" path="res://sprites/coconut/blue umbrella.png" id="2_l47p5"]
 
 [node name="spawner_umbrellablue" type="Node2D"]
 script = ExtResource("1_hj1wh")
@@ -11,6 +11,6 @@ itemType = "raw"
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-texture_normal = ExtResource("2_kyb4k")
+texture_normal = ExtResource("2_l47p5")
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
