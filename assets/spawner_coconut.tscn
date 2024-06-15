@@ -9,7 +9,7 @@ script = ExtResource("1_2v123")
 coconut_scene = ExtResource("2_vree5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -149)
+position = Vector2(0, -96)
 texture = ExtResource("3_br5ih")
 
 [node name="RefillTimer" type="Timer" parent="."]

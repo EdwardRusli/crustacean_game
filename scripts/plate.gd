@@ -135,20 +135,27 @@ func _process(delta):
 			add_item_to_plate(plate_bread_full, "plate_bread_full")
 		
 		#cooked sandwiches
-		if (SceneManager.currentlyHeld.itemName == "plate_bread_cheese_cooked"&&itemName == "plate_bread"):
+		if (SceneManager.currentlyHeld.itemName == "plate_bread_cheese_cooked"&&itemName == "plate_empty"):
 			add_item_to_plate(plate_bread_cheese_cooked, "plate_bread_cheese_cooked")
-		if (SceneManager.currentlyHeld.itemName == "plate_bread_kelp_cooked"&&itemName == "plate_bread"):
+			SceneManager.currentlyHeld.empty_pan()
+		if (SceneManager.currentlyHeld.itemName == "plate_bread_kelp_cooked"&&itemName == "plate_empty"):
 			add_item_to_plate(plate_bread_kelp_cooked, "plate_bread_kelp_cooked")
-		if (SceneManager.currentlyHeld.itemName == "plate_bread_ham_cooked"&&itemName == "plate_bread"):
+			SceneManager.currentlyHeld.empty_pan()
+		if (SceneManager.currentlyHeld.itemName == "plate_bread_ham_cooked"&&itemName == "plate_empty"):
 			add_item_to_plate(plate_bread_ham_cooked, "plate_bread_ham_cooked")
-		if (SceneManager.currentlyHeld.itemName == "plate_bread_cheese_kelp_cooked"&&itemName == "plate_bread"):
+			SceneManager.currentlyHeld.empty_pan()
+		if (SceneManager.currentlyHeld.itemName == "plate_bread_cheese_kelp_cooked"&&itemName == "plate_empty"):
 			add_item_to_plate(plate_bread_cheese_kelp_cooked, "plate_bread_cheese_kelp_cooked")
-		if (SceneManager.currentlyHeld.itemName == "plate_bread_cheese_ham_cooked"&&itemName == "plate_bread"):
+			SceneManager.currentlyHeld.empty_pan()
+		if (SceneManager.currentlyHeld.itemName == "plate_bread_cheese_ham_cooked"&&itemName == "plate_empty"):
 			add_item_to_plate(plate_bread_cheese_ham_cooked, "plate_bread_cheese_ham_cooked")
-		if (SceneManager.currentlyHeld.itemName == "plate_bread_kelp_ham_cooked"&&itemName == "plate_bread"):
+			SceneManager.currentlyHeld.empty_pan()
+		if (SceneManager.currentlyHeld.itemName == "plate_bread_kelp_ham_cooked"&&itemName == "plate_empty"):
 			add_item_to_plate(plate_bread_kelp_ham_cooked, "plate_bread_kelp_ham_cooked")
-		if (SceneManager.currentlyHeld.itemName == "plate_bread_full_cooked"&&itemName == "plate_bread"):
+			SceneManager.currentlyHeld.empty_pan()
+		if (SceneManager.currentlyHeld.itemName == "plate_bread_full_cooked"&&itemName == "plate_empty"):
 			add_item_to_plate(plate_bread_full_cooked, "plate_bread_full_cooked")
+			SceneManager.currentlyHeld.empty_pan()
 			
 func _on_texture_button_button_down():
 	if (itemName != "plate_empty"):

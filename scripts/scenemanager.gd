@@ -6,6 +6,10 @@ var currentlyHeld = null
 var filledSlots = [false, false, false]
 var pop_sound = preload ("res://sounds/pop.mp3")
 
+var fed_jelly_fish
+var paid_loanshark
+var paid_lobstermobster
+
 var audio_stream_player
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

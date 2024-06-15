@@ -67,12 +67,12 @@ var served_customers = 0
 var customers = [
 	#name, orders, patience_in_seconds, dialogue_lines, dialogue_breakpoints, customer_sprite
 	
-	["random", ["plate_tortilla_kelp", "coconut"],30],
-	# ["random", ["plate_tortilla_kelp"],30],
-	# ["random", ["plate_tortilla_kelp"],30],
-	# ["random", ["plate_tortilla_kelp_salsa"],30],
-	# ["random", ["plate_tortilla_kelp_mayo"],30],
-	["loansharkshark", [],10, ["Hi, I hope you’re ready, I’ll come again in 2 days to pick up the money your Uncle has owed me."], [0],"res://sprites/customers/loansharkshark/sharkfrown.png"]
+	["random", ["plate_tortilla_kelp"],30],
+	["random", ["plate_tortilla_kelp"],30],
+	["random", ["plate_tortilla_kelp"],30],
+	["random", ["plate_tortilla_kelp_salsa"],30],
+	["random", ["plate_tortilla_kelp_mayo"],30],
+	#["loansharkshark", [],10, ["Hi, I hope you’re ready, I’ll come again in 2 days to pick up the money your Uncle has owed me."], [0],"res://sprites/customers/loansharkshark/sharkfrown.png"]
 ]
 var animation_player
 var audio_stream_player
@@ -163,10 +163,20 @@ func _on_order_finished(slot):
 	served_customers += 1
 	next_customer(slot)
 
+var max_strikes = 3
+var strike_count = 0
+var canstrike = true
 func _on_order_patience_run_out(slot):
 	print("slot " + str(slot) + " out of patience")
 	served_customers += 1
-	next_customer(slot)
+	strike_count += 1
+	if (strike_count > max_strikes&&canstrike):
+		animation_player.play("DayFailed")
+		canstrike = false
+		await get_tree().create_timer(8).timeout
+		get_tree().reload_current_scene()
+	else:
+		next_customer(slot)
 
 func next_customer(slot):
 	var rand = RandomNumberGenerator.new().randf_range(2, 5)
@@ -189,8 +199,8 @@ func end_day():
 	if (!has_ended&&served_customers == customers.size()):
 		has_ended = true
 		animation_player.play("DayEnd")
-		await get_tree().create_timer(5).timeout
-		get_tree().change_scene_to_file("") # what do you want
+		await get_tree().create_timer(6).timeout
+		get_tree().change_scene_to_file("res://scenes/level2.tscn") # what do you want
 
 func _on_audio_stream_player_finished():
 	audio_stream_player.play()

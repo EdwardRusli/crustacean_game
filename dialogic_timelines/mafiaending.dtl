@@ -1,0 +1,5 @@
+[background arg="res://sprites/backgrounds/black.png" fade="0.0"]
+[background arg="res://sprites/backgrounds/dark alley.png" fade="5.0"]
+[sound path="res://sounds/mafiaending.mp3" volume="0.0"]
+It seems the mafia wasn't too pleased with you today.
+[wait time="999.0"]

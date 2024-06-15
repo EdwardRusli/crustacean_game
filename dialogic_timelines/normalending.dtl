@@ -1,0 +1,39 @@
+[music path="res://sounds/music_beach.mp3" fade="0.0" volume="0.0"]
+[background arg="res://sprites/backgrounds/black.png" fade="0.0"]
+[background arg="res://sprites/backgrounds/resto.png" fade="2.0"]
+[wait time="3.0"]
+herbert: Uh, sorry but we’re clos-... Uncle.
+join uncle 1
+uncle (uncle happy): Well, well, well I see you’ve done a mighty fineee job!
+herbert: Look. You can’t just suddenly leave me with the restaurant and-
+uncle: Say, why don’t you work here for, well, forever!
+herbert: WHAT?!
+uncle: It's not like you youngins have anything going on right? Besides the mollas pretty gosh dang it nice!
+herbert: …I guess that's true…
+uncle: And look at ya! Just a week and yer already the master of the grill! I say this jobs meant for you.
+herbert: …Fine. But just because the pay is good.
+uncle: Attaboy. Just sign this employment contract here!
+herbert: Well somebody clearly planned this…
+uncle: Hehehe! Well now that yer tied by a contract why don’t I teach ya the secret recipe~
+herbert: The… secret recipe?
+uncle: Let’s just say… had ye ever wondered what that white meat was?
+herbert: The white meat?
+uncle: Grab some for me from the back will ya?
+herbert: Okay...
+leave uncle
+[background arg="res://sprites/backgrounds/black.png" fade="1.0"]
+[wait time="2.0"]
+[background arg="res://sprites/backgrounds/secret ending 1.png" fade="1.0"]
+[music fade="0.0" volume="0.0"]
+[sound path="res://sounds/alert.mp3" volume="0.0"]
+[wait time="5.0"]
+herbert: What is this?
+[background arg="res://sprites/backgrounds/secret ending 2.png" fade="1.0"]
+[sound path="res://sounds/mafiaending.mp3" volume="0.0"]
+[wait time="5.0"]
+herbert: !!!!!!!!!!!!!!!!!
+[background arg="res://sprites/backgrounds/black.png" fade="5.0"]
+[wait time="5.0"]
+Thanks for Playing!\
+~ Cath, Ed, Jess, Kay, Marco ~
+[wait time="999.0"]

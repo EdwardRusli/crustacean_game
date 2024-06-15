@@ -1,11 +1,11 @@
+ColorRect
+TextureRect
 AudioStreamPlayer
 AudioStreamPlayer2D
 NinePatchRect
 MarginContainer
-TextureRect
 Sprite2D
 HBoxContainer
-ColorRect
 Node
 ProgressBar
 Timer

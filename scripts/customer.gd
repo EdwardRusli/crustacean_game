@@ -9,6 +9,8 @@ extends Node2D
 @onready var animation_player = $AnimationPlayer
 @onready var hbox_container = $NinePatchRect/MarginContainer/HBoxContainer
 
+var customer_name
+
 var textures = {
 	"coconut": "res://sprites/coconut/coconut doang.png",
 	"coconut_umbrellablue": "res://sprites/coconut/coconut blue.png",
@@ -105,6 +107,8 @@ func _process(delta):
 			if (SceneManager.currentlyHeld.itemType == "plate"):
 				#empty the origin plate if it is a plate
 				SceneManager.currentlyHeld.empty_plate()
+			if (SceneManager.currentlyHeld.itemType == "pan"):
+				SceneManager.currentlyHeld.empty_pan()
 			if (SceneManager.currentlyHeld.itemType == "coconut"):
 				SceneManager.currentlyHeld.get_parent().take_drink()
 			if (SceneManager.currentlyHeld.itemType == "shavedice"):
@@ -122,6 +126,18 @@ func _process(delta):
 			test_label.text = orders_string
 			
 			#next_line() # fix this asap, if food given before finished yapping, it could skip to next dialogue -> softlock
+			if (customer_name == "jelly_fish"):
+				dialogue_bubble.print_dialogue(3)
+				SceneManager.fed_jelly_fish = true
+				await get_tree().create_timer(2).timeout
+			if (customer_name == "loansharkshark"):
+				dialogue_bubble.print_dialogue(1)
+				SceneManager.paid_loanshark = true
+				await get_tree().create_timer(2).timeout
+			if (customer_name == "lobstermobster"):
+				dialogue_bubble.print_dialogue(1)
+				SceneManager.paid_lobstermobster = true
+				await get_tree().create_timer(2).timeout
 			
 			if (orders.size() == 0):
 				#emit signal that all orders are fulfilled
@@ -145,6 +161,15 @@ func next_line():
 
 func _on_patience_timer_timeout():
 	print("out of patience")
+	if (customer_name == "jelly_fish"):
+		dialogue_bubble.print_dialogue(4)
+		await get_tree().create_timer(2).timeout
+	if (customer_name == "loansharkshark"):
+		dialogue_bubble.print_dialogue(2)
+		await get_tree().create_timer(2).timeout
+	if (customer_name == "lobstermobster"):
+		dialogue_bubble.print_dialogue(2)
+		await get_tree().create_timer(2).timeout
 	on_out_of_patience.emit(used_slot)
 	button.disabled = true
 	animation_player.play("customer_disappear")

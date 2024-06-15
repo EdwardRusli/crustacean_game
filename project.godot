@@ -13,7 +13,10 @@ config_version=5
 config/name="crustacean_game"
 run/main_scene="res://scenes/cutscene_0.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="res://sprites/splash.png"
+config/icon="res://icon.png"
+config/macos_native_icon="res://icon.png"
+config/windows_native_icon="res://icon.png"
 
 [autoload]
 
@@ -29,7 +32,9 @@ directories/dch_directory={
 "uncle": "res://dialogic_characters/uncle.dch"
 }
 directories/dtl_directory={
-"intro": "res://dialogic_timelines/intro.dtl"
+"intro": "res://dialogic_timelines/intro.dtl",
+"mafiaending": "res://dialogic_timelines/mafiaending.dtl",
+"normalending": "res://dialogic_timelines/normalending.dtl"
 }
 glossary/default_case_sensitive=true
 layout/style_list=["res://dialogic_styles/defaultstyle.tres"]

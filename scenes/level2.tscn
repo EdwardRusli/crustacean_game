@@ -1,0 +1,581 @@
+[gd_scene load_steps=35 format=3 uid="uid://cawawx1eg70wd"]
+
+[ext_resource type="Script" path="res://scripts/scenemanager.gd" id="1_73btu"]
+[ext_resource type="PackedScene" uid="uid://cncrirmti6srb" path="res://assets/customer.tscn" id="2_ou1w4"]
+[ext_resource type="Texture2D" uid="uid://b163biwc867u5" path="res://sprites/crabstobgbg.png" id="3_kt2vb"]
+[ext_resource type="Texture2D" uid="uid://831j43qjxe0a" path="res://sprites/crabstobg.png" id="4_b2pqk"]
+[ext_resource type="Script" path="res://scripts/Day2.gd" id="5_0kbxv"]
+[ext_resource type="PackedScene" uid="uid://bh6un7fnopfma" path="res://assets/pan.tscn" id="6_x8lbw"]
+[ext_resource type="PackedScene" uid="uid://ydfq4n8hfyho" path="res://assets/plate.tscn" id="7_aoln7"]
+[ext_resource type="PackedScene" uid="uid://1yhgnie8gq6x" path="res://assets/spawner_kelp.tscn" id="8_jjctr"]
+[ext_resource type="PackedScene" uid="uid://bii8dwenasvuc" path="res://assets/spawner_tortilla.tscn" id="9_88woo"]
+[ext_resource type="PackedScene" uid="uid://ddatydr8rq0j8" path="res://assets/spawner_mayo.tscn" id="10_nl12h"]
+[ext_resource type="PackedScene" uid="uid://b8bafibplyvlq" path="res://assets/spawner_salsa.tscn" id="11_1qupb"]
+[ext_resource type="PackedScene" uid="uid://b7thyr04gm6gk" path="res://assets/spawner_coconut.tscn" id="12_nl1uq"]
+[ext_resource type="PackedScene" uid="uid://csigkls1svwji" path="res://assets/spawner_meat.tscn" id="13_jjin1"]
+[ext_resource type="PackedScene" uid="uid://bl33l2bj7b6lb" path="res://assets/spawner_umbrellablue.tscn" id="14_dtrro"]
+[ext_resource type="PackedScene" uid="uid://dd48vcc7asats" path="res://assets/spawner_umbrellapink.tscn" id="15_g61og"]
+[ext_resource type="PackedScene" uid="uid://5rex336r4r7y" path="res://assets/trashbin.tscn" id="16_ptjd8"]
+[ext_resource type="PackedScene" uid="uid://cw6jddqj1old7" path="res://assets/spawner_bread.tscn" id="17_8msl8"]
+[ext_resource type="PackedScene" uid="uid://ct2jsv21nuas8" path="res://assets/spawner_cheese.tscn" id="18_rbodg"]
+[ext_resource type="PackedScene" uid="uid://bxmqopusbjnm2" path="res://assets/spawner_ham.tscn" id="19_kp7ea"]
+[ext_resource type="PackedScene" uid="uid://ceq14q3035ou8" path="res://assets/spawner_shavedice.tscn" id="20_ahmqu"]
+[ext_resource type="PackedScene" uid="uid://chegqwimv066k" path="res://assets/spawner_syrup.tscn" id="21_u3ixi"]
+[ext_resource type="Script" path="res://scripts/mouse_sprite.gd" id="22_8fchw"]
+[ext_resource type="FontFile" uid="uid://dgd6rxl8ffw81" path="res://fonts/MouldyCheeseRegular-WyMWG.ttf" id="23_spefg"]
+[ext_resource type="Texture2D" uid="uid://dcj8ni1tkcyvi" path="res://sprites/backgrounds/bad review.png" id="24_njwtt"]
+[ext_resource type="AudioStream" uid="uid://djn22s1pvj2x6" path="res://sounds/menuclick.mp3" id="25_tmbsw"]
+[ext_resource type="AudioStream" uid="uid://cd4x2t13dst7a" path="res://sounds/failtrombone.mp3" id="26_3xuol"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glkt0"]
+bg_color = Color(0.7, 0.521033, 0.287, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_qhsj6"]
+resource_name = "CutsceneEnd"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SceneFadeInOutRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SceneFadeInOutRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v76q6"]
+resource_name = "CutsceneStart"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SceneFadeInOutRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SceneFadeInOutRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6the7"]
+resource_name = "DayEnd"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DayIntroOutroRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.784314)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DayIntroOutroRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DayLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(885, 23), Vector2(801, 342)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DayLabel:theme_override_font_sizes/font_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [48, 100]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SceneFadeInOutRect:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SceneFadeInOutRect:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DayLabel:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(151, 74), Vector2(321, 166)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DayLabel:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Day 2", "Done!"]
+}
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("OutroSFXPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("25_tmbsw")
+}],
+"times": PackedFloat32Array(2.5)
+}
+tracks/8/use_blend = true
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_0ios7"]
+resource_name = "DayFailed"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SceneFadeInOutRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SceneFadeInOutRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SceneDayFailed:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SceneDayFailed:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2, 3, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OutroSFXPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("26_3xuol")
+}],
+"times": PackedFloat32Array(1.6)
+}
+tracks/5/use_blend = true
+
+[sub_resource type="Animation" id="Animation_ustk6"]
+resource_name = "DayStart"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DayIntroOutroRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.5, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.784314), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DayIntroOutroRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.5, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DayLabel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.5, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(801, 342), Vector2(885, 23)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DayLabel:theme_override_font_sizes/font_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.5, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [100, 48]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SceneFadeInOutRect:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SceneFadeInOutRect:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DayLabel:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.5, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(321, 166), Vector2(151, 74)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DayLabel:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Day 2"]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SceneDayFailed:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dy0ft"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SceneDayFailed:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8bq7d"]
+_data = {
+"CutsceneEnd": SubResource("Animation_qhsj6"),
+"CutsceneStart": SubResource("Animation_v76q6"),
+"DayEnd": SubResource("Animation_6the7"),
+"DayFailed": SubResource("Animation_0ios7"),
+"DayStart": SubResource("Animation_ustk6"),
+"RESET": SubResource("Animation_dy0ft")
+}
+
+[node name="Level" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_73btu")
+customer_scene = ExtResource("2_ou1w4")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("3_kt2vb")
+
+[node name="Counter" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("4_b2pqk")
+
+[node name="CustomerSpawnManager" type="Timer" parent="."]
+autostart = true
+script = ExtResource("5_0kbxv")
+
+[node name="Pan" parent="." instance=ExtResource("6_x8lbw")]
+position = Vector2(1471, 844)
+
+[node name="Pan2" parent="." instance=ExtResource("6_x8lbw")]
+position = Vector2(1675, 844)
+
+[node name="Plate" parent="." instance=ExtResource("7_aoln7")]
+position = Vector2(586, 830)
+
+[node name="Plate2" parent="." instance=ExtResource("7_aoln7")]
+position = Vector2(880, 830)
+
+[node name="spawner_kelp" parent="." instance=ExtResource("8_jjctr")]
+position = Vector2(819, 660)
+scale = Vector2(0.741187, 0.741187)
+
+[node name="spawner_tortilla" parent="." instance=ExtResource("9_88woo")]
+position = Vector2(355, 672)
+scale = Vector2(0.641285, 0.641285)
+
+[node name="spawner_mayo" parent="." instance=ExtResource("10_nl12h")]
+position = Vector2(133, 895)
+scale = Vector2(0.76136, 0.76136)
+
+[node name="spawner_salsa" parent="." instance=ExtResource("11_1qupb")]
+position = Vector2(250, 886)
+scale = Vector2(0.780375, 0.780375)
+
+[node name="spawner_coconut" parent="." instance=ExtResource("12_nl1uq")]
+position = Vector2(1516, 811)
+
+[node name="spawner_meat" parent="." instance=ExtResource("13_jjin1")]
+position = Vector2(999, 621)
+
+[node name="spawner_umbrellablue" parent="." instance=ExtResource("14_dtrro")]
+position = Vector2(1596, 756)
+scale = Vector2(0.693576, 0.693576)
+
+[node name="spawner_umbrellapink" parent="." instance=ExtResource("15_g61og")]
+position = Vector2(1596, 684)
+scale = Vector2(0.694, 0.694)
+
+[node name="Trashbin" parent="." instance=ExtResource("16_ptjd8")]
+position = Vector2(1166, 854)
+
+[node name="spawner_bread" parent="." instance=ExtResource("17_8msl8")]
+position = Vector2(114, 646)
+
+[node name="spawner_cheese" parent="." instance=ExtResource("18_rbodg")]
+position = Vector2(366, 873)
+scale = Vector2(0.951231, 0.951231)
+
+[node name="spawner_ham" parent="." instance=ExtResource("19_kp7ea")]
+position = Vector2(373, 976)
+scale = Vector2(0.693282, 0.693282)
+
+[node name="spawner_shavedice" parent="." instance=ExtResource("20_ahmqu")]
+position = Vector2(1731, 811)
+
+[node name="spawner_syrup" parent="." instance=ExtResource("21_u3ixi")]
+position = Vector2(1815, 631)
+
+[node name="MouseSprite" type="Sprite2D" parent="."]
+script = ExtResource("22_8fchw")
+
+[node name="PauseButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1821.0
+offset_right = 1907.0
+offset_bottom = 86.0
+
+[node name="DayIntroOutroRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="DayLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 342.0
+offset_right = 1122.0
+offset_bottom = 508.0
+theme_override_fonts/font = ExtResource("23_spefg")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_glkt0")
+text = "Day 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SceneFadeInOutRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="SceneDayFailed" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("24_njwtt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8bq7d")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="OutroSFXPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="timeout" from="CustomerSpawnManager" to="." method="_on_elapsed_timer_timeout"]
+[connection signal="timeout" from="CustomerSpawnManager" to="CustomerSpawnManager" method="_on_timeout"]

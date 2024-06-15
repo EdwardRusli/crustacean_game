@@ -1,7 +1,8 @@
 [background arg="res://sprites/backgrounds/black.png" fade="0.0"]
 [background arg="res://sprites/backgrounds/home.png" fade="2.0"]
+[sound path="res://sounds/phonering.mp3" volume="0.0"]
 [wait time="3.0"]
-join uncle (uncle happy) 2
+join uncle (uncle happy) 4
 [wait time="1.0"]
 uncle (uncle happy): Hiya Sonny Boy, it's summer vacation and you ain’t got nothing going on right? Come down here to Hawaii and meet with me!
 herbert (uncle happy): Uncle? Wait, wha-
@@ -14,6 +15,7 @@ herbert: What was that about? Well I suppose I do have nothing going on…
 [wait time="2.0"]
 herbert: Well, here I am in Hawaii…
 herbert: Uncle? Hellooo, are you here? Weird, they told me to look for him in his restaurant. (Phone Rings)
+[sound path="res://sounds/phonering.mp3" volume="0.0"]
 herbert: Hi, sorry but my Uncle is not here at the moment-
 join uncle (uncle happy) 2
 uncle: Good job making it sonny boy! Now I'm out here on some sweet vacation!
